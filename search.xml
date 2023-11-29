@@ -5,11 +5,17 @@
     
     <entry>
       <title>DM8 docker arm64</title>
-      <link href="/2023/11/28/DM8-docker-arm64/"/>
-      <url>/2023/11/28/DM8-docker-arm64/</url>
+      <link href="/2023/07/15/DM8-docker-arm64/"/>
+      <url>/2023/07/15/DM8-docker-arm64/</url>
       
-        <content type="html"><![CDATA[<p>使用docker安装达梦数据库（DM8），适用于arm架构，原文链接：<a href="https://blog.csdn.net/qinchaozengh/article/details/123725042?spm=1001.2014.3001.5501">DM8 arm docker</a>，可以在Mac M1芯片运行。<br><a href="https://hub.docker.com/r/qinchz/dm8-arm64">Docker Hub</a>、<a href="https://github.com/qinchz/docker-dm">GitHub</a></p><h2 id="docker安装DM8"><a href="#docker安装DM8" class="headerlink" title="docker安装DM8"></a>docker安装DM8</h2><h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>拉取DM8 arm docker镜像</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull qinchz/dm8-arm64</span><br></pre></td></tr></table></figure><h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker compose"></a>docker compose</h3><p>创建docker compose文件并启动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&#x27;2.1&#x27;</span></span><br><span class="line">services:</span><br><span class="line">  DM8:</span><br><span class="line">    image: qinchz/dm8-arm64:latest</span><br><span class="line">    container_name: dm8</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;5236:5236&quot;</span></span><br><span class="line">    mem_limit: 1g</span><br><span class="line">    memswap_limit: 1g</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/dm8:/home/dmdba/data </span><br></pre></td></tr></table></figure><h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><p>DM8导入dmp文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入数据库bin执行目录</span></span><br><span class="line"><span class="built_in">cd</span> /home/dmdba/dmdbms/bin</span><br><span class="line"><span class="comment"># 执行导入命令</span></span><br><span class="line">./dimp 用户名/密码@127.0.0.1:5236 file=dmp文件地址 full=Y</span><br></pre></td></tr></table></figure><h2 id="Mac用户使用DB-Server连接DM8"><a href="#Mac用户使用DB-Server连接DM8" class="headerlink" title="Mac用户使用DB Server连接DM8"></a>Mac用户使用DB Server连接DM8</h2><h3 id="下载Dm驱动"><a href="#下载Dm驱动" class="headerlink" title="下载Dm驱动"></a>下载Dm驱动</h3><p>进入<a href="https://www.dameng.com/">达梦官网</a>随便选择系统进行下载并解压，进入iso文件，然后进入目录：&#x2F;dameng&#x2F;source&#x2F;drivers&#x2F;jdbc找到DmjdvcDriver18.jar</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/dmhtml.png" alt="dmhtml"></p><h3 id="DBServer链接"><a href="#DBServer链接" class="headerlink" title="DBServer链接"></a>DBServer链接</h3><p>打开DBServer选择数据库-&gt;驱动管理器</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231129114444332.png" alt="image-20231129114444332"></p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231129114803245.png" alt="image-20231129114803245"></p><p>设置驱动类名、url模版、端口</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231129114833011.png" alt="image-20231129114833011"></p><p>新建数据库连接-&gt;选择刚刚添加的驱动</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231129115014303.png" alt="image-20231129115014303"></p>]]></content>
+        <content type="html"><![CDATA[<p>使用docker安装达梦数据库（DM8），适用于arm架构，可以在Mac M1芯片运行。</p><p>原文链接：<a href="https://blog.csdn.net/qinchaozengh/article/details/123725042?spm=1001.2014.3001.5501">DM8 arm docker</a>、<a href="https://hub.docker.com/r/qinchz/dm8-arm64">Docker Hub</a>、<a href="https://github.com/qinchz/docker-dm">GitHub</a></p><h2 id="docker安装DM8"><a href="#docker安装DM8" class="headerlink" title="docker安装DM8"></a>docker安装DM8</h2><h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>拉取DM8 arm docker镜像</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull qinchz/dm8-arm64</span><br></pre></td></tr></table></figure><h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker compose"></a>docker compose</h3><p>创建docker compose文件并启动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&#x27;2.1&#x27;</span></span><br><span class="line">services:</span><br><span class="line">  DM8:</span><br><span class="line">    image: qinchz/dm8-arm64:latest</span><br><span class="line">    container_name: dm8</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;5236:5236&quot;</span></span><br><span class="line">    mem_limit: 1g</span><br><span class="line">    memswap_limit: 1g</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/dm8:/home/dmdba/data </span><br></pre></td></tr></table></figure><h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><p>DM8导入dmp文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入数据库bin执行目录</span></span><br><span class="line"><span class="built_in">cd</span> /home/dmdba/dmdbms/bin</span><br><span class="line"><span class="comment"># 执行导入命令</span></span><br><span class="line">./dimp 用户名/密码@127.0.0.1:5236 file=dmp文件地址 full=Y</span><br></pre></td></tr></table></figure><h2 id="Mac用户使用DB-Server连接DM8"><a href="#Mac用户使用DB-Server连接DM8" class="headerlink" title="Mac用户使用DB Server连接DM8"></a>Mac用户使用DB Server连接DM8</h2><h3 id="下载Dm驱动"><a href="#下载Dm驱动" class="headerlink" title="下载Dm驱动"></a>下载Dm驱动</h3><p>进入<a href="https://www.dameng.com/">达梦官网</a>随便选择系统进行下载并解压，进入iso文件，然后进入目录：&#x2F;dameng&#x2F;source&#x2F;drivers&#x2F;jdbc找到DmjdvcDriver18.jar</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/dmhtml.png" alt="dmhtml"></p><h3 id="DBServer链接"><a href="#DBServer链接" class="headerlink" title="DBServer链接"></a>DBServer链接</h3><p>打开DBServer选择数据库-&gt;驱动管理器</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231129114444332.png" alt="image-20231129114444332"></p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231129114803245.png" alt="image-20231129114803245"></p><p>设置驱动类名、url模版、端口</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231129114833011.png" alt="image-20231129114833011"></p><p>新建数据库连接-&gt;选择刚刚添加的驱动</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231129115014303.png" alt="image-20231129115014303"></p>]]></content>
       
+      
+      <categories>
+          
+          <category> RDS </category>
+          
+      </categories>
       
       
         <tags>
@@ -27,6 +33,62 @@
     
     
     <entry>
+      <title>Redis：docker安装redis</title>
+      <link href="/2019/10/08/Redis-docker%E5%AE%89%E8%A3%85redis/"/>
+      <url>/2019/10/08/Redis-docker%E5%AE%89%E8%A3%85redis/</url>
+      
+        <content type="html"><![CDATA[<h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h2><h3 id="选择所需镜像版本"><a href="#选择所需镜像版本" class="headerlink" title="选择所需镜像版本"></a>选择所需镜像版本</h3><p>选择所需镜像版本，通过命令拉取镜像，不同版本使用对应docker命令，需注意查看镜像版本是否有本机系统适用的</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull redis</span><br></pre></td></tr></table></figure><h3 id="查看镜像"><a href="#查看镜像" class="headerlink" title="查看镜像"></a>查看镜像</h3><p>docker images命令查看拉取到的镜像</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231129144723898.png" alt="image-20231129144723898"></p><h2 id="启动并连接"><a href="#启动并连接" class="headerlink" title="启动并连接"></a>启动并连接</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name redis -p 6379:6379 redis redis-server --requirepass <span class="string">&quot;123456&quot;</span> --appendonly <span class="built_in">yes</span></span><br></pre></td></tr></table></figure><p>可以使用RedisDesktopManager进行连接并操作</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> NoSQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> redis </tag>
+            
+            <tag> nosql </tag>
+            
+            <tag> docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Mysql：使用docker安装mysql</title>
+      <link href="/2019/09/18/mysql8-%E4%BD%BF%E7%94%A8docker%E5%AE%89%E8%A3%85mysql/"/>
+      <url>/2019/09/18/mysql8-%E4%BD%BF%E7%94%A8docker%E5%AE%89%E8%A3%85mysql/</url>
+      
+        <content type="html"><![CDATA[<h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h2><h3 id="选择所需镜像版本"><a href="#选择所需镜像版本" class="headerlink" title="选择所需镜像版本"></a>选择所需镜像版本</h3><p>选择所需镜像版本，通过命令拉取镜像，不同版本使用对应docker命令，需注意查看镜像版本是否有本机系统适用的</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231129141706241.png" alt="image-20231129141706241"></p><h3 id="查看镜像"><a href="#查看镜像" class="headerlink" title="查看镜像"></a>查看镜像</h3><p>docker images命令查看拉取到的镜像</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231129141920860.png" alt="image-20231129141920860"></p><h2 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker compose"></a>docker compose</h2><h3 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h3><p>创建docker-compose.yml脚本文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&#x27;2&#x27;</span></span><br><span class="line">services:</span><br><span class="line">mysql:</span><br><span class="line"><span class="comment">#镜像</span></span><br><span class="line">image: arm64v8/mysql:latest</span><br><span class="line"><span class="comment">#容器名</span></span><br><span class="line">container_name: mysql                                        </span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">    MYSQL_ROOT_PASSWORD: 123456</span><br><span class="line">    TZ: Asia/Shanghai</span><br><span class="line">    ports:</span><br><span class="line">    - <span class="string">&quot;3306:3306&quot;</span></span><br><span class="line">    <span class="built_in">command</span>:</span><br><span class="line">    --lower-case-table-names=1</span><br><span class="line">    --character-set-server=utf8mb4</span><br><span class="line">    --collation-server=utf8mb4_general_ci</span><br></pre></td></tr></table></figure><h3 id="执行脚本"><a href="#执行脚本" class="headerlink" title="执行脚本"></a>执行脚本</h3><p>进入脚本文件所在位置执行 docker-compose up -d（此命令会执行脚本文件所在文件夹内所有脚本）</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure><h2 id="连接mysql"><a href="#连接mysql" class="headerlink" title="连接mysql"></a>连接mysql</h2><p>通过可视化管理工具，根据脚本文件配置的密码及端口连接到mysql服务</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> RDS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> docker </tag>
+            
+            <tag> mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2018/05/06/hello-world/"/>
       <url>/2018/05/06/hello-world/</url>
@@ -34,6 +96,18 @@
         <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
       
       
+      <categories>
+          
+          <category> Hello word </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hello word </tag>
+            
+        </tags>
       
     </entry>
     
