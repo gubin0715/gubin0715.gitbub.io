@@ -33,6 +33,35 @@
     
     
     <entry>
+      <title>Nacos：docker安装nacos</title>
+      <link href="/2019/10/09/Nacos%EF%BC%9Adocker%E5%AE%89%E8%A3%85nacos/"/>
+      <url>/2019/10/09/Nacos%EF%BC%9Adocker%E5%AE%89%E8%A3%85nacos/</url>
+      
+        <content type="html"><![CDATA[<h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h2><h3 id="选择所需镜像版本"><a href="#选择所需镜像版本" class="headerlink" title="选择所需镜像版本"></a>选择所需镜像版本</h3><p>选择所需镜像版本，通过命令拉取镜像，不同版本使用对应docker命令，需注意查看镜像版本是否有本机系统适用的</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231129160631232.png" alt="image-20231129160631232"></p><h3 id="查看镜像"><a href="#查看镜像" class="headerlink" title="查看镜像"></a>查看镜像</h3><p>docker images命令查看拉取到的镜像</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231129160709771.png" alt="image-20231129160709771"></p><h2 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker compose"></a>docker compose</h2><h3 id="启动nacos"><a href="#启动nacos" class="headerlink" title="启动nacos"></a>启动nacos</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 简单启动用于宿主机挂载</span></span><br><span class="line">docker run --name nacos -d -p 8848:8848 -e MODE=standalone  nacos/nacos-server:v2.2.0-slim</span><br></pre></td></tr></table></figure><h3 id="复制容器文件"><a href="#复制容器文件" class="headerlink" title="复制容器文件"></a>复制容器文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker cp命令，前面为容器文件目录 后边为宿主机目录（log、data同理）</span></span><br><span class="line">docker <span class="built_in">cp</span> nacos:/home/nacos/conf /宿主机文件地址</span><br></pre></td></tr></table></figure><h3 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h3><p>创建docker-compose.yml脚本文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&#x27;2&#x27;</span></span><br><span class="line">services:</span><br><span class="line">  nacos:</span><br><span class="line">    image: nacos/nacos-server:v2.2.0-slim                        <span class="comment"># 镜像`nacos/nacos-server:v2.1.2-slim`</span></span><br><span class="line">    container_name: nacos                                        <span class="comment"># 容器名为&#x27;nacos&#x27;</span></span><br><span class="line">    restart: always                                              <span class="comment"># 指定容器退出后的重启策略为始终重启</span></span><br><span class="line">    volumes:                                                     <span class="comment"># 数据卷挂载路径设置,将本机目录映射到容器目录</span></span><br><span class="line">      - /Users/gubin/Documents/docker/nacos/logs:/home/nacos/logs</span><br><span class="line">      - /Users/gubin/Documents/docker/nacos/conf:/home/nacos/conf</span><br><span class="line">      - /Users/gubin/Documents/docker/nacos/data:/home/nacos/data</span><br><span class="line">    environment:</span><br><span class="line">      TZ: Asia/Shanghai</span><br><span class="line">      LANG: en_US.UTF-8</span><br><span class="line">      MODE: standalone <span class="comment"># 单机模式启动</span></span><br><span class="line">    ports:                              <span class="comment"># 映射端口</span></span><br><span class="line">      - <span class="string">&quot;8848:8848&quot;</span></span><br><span class="line">      - <span class="string">&quot;9848:9848&quot;</span></span><br><span class="line">      - <span class="string">&quot;9849:9849&quot;</span></span><br><span class="line">    cpu_shares: 4</span><br><span class="line">    mem_limit: 2048M</span><br></pre></td></tr></table></figure><h3 id="执行脚本"><a href="#执行脚本" class="headerlink" title="执行脚本"></a>执行脚本</h3><p>进入脚本文件所在位置执行 docker-compose up -d（此命令会执行脚本文件所在文件夹内所有脚本）</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> SAO </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> docker </tag>
+            
+            <tag> SOA </tag>
+            
+            <tag> Nacos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Redis：docker安装redis</title>
       <link href="/2019/10/08/Redis-docker%E5%AE%89%E8%A3%85redis/"/>
       <url>/2019/10/08/Redis-docker%E5%AE%89%E8%A3%85redis/</url>
@@ -49,11 +78,11 @@
       
         <tags>
             
+            <tag> docker </tag>
+            
             <tag> redis </tag>
             
             <tag> nosql </tag>
-            
-            <tag> docker </tag>
             
         </tags>
       
@@ -78,9 +107,9 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> mysql </tag>
+            
+            <tag> docker </tag>
             
         </tags>
       
