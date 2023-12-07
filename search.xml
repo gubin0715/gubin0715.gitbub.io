@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2023/12/01/Meta%20AI%EF%BC%9ALLama2/"/>
+      <url>/2023/12/01/Meta%20AI%EF%BC%9ALLama2/</url>
+      
+        <content type="html"><![CDATA[<h2 id="申请下载"><a href="#申请下载" class="headerlink" title="申请下载"></a>申请下载</h2><p>申请地址：<a href="https://ai.meta.com/resources/models-and-libraries/llama-downloads">Llama</a>，申请后下载URL会发送到邮箱，马赛克部分为URL，后边下载会用到，url有效期为24小时</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231201155819334.png" alt="image-20231201155819334"></p><p>长期使用可通过<a href="https://huggingface.co/meta-llama">Hugging Face</a>下载</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231207151127486.png" alt="image-20231207151127486"></p><p>注册hugging face账号，邮箱名称和申请meta ai llama模型邮箱一致，注册完成后找到meta ai llama 2模型，邮箱信息一致的话就会拥有访问权限，就可以下载模型了</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231207151808363.png" alt="image-20231207151808363"></p><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>需要python环境，我这里安装的是python3.11.5版本</p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231201150254417.png" alt="image-20231201150254417"></p><p>克隆GitHub上llama项目：<a href="https://github.com/facebookresearch/llama.git">https://github.com/facebookresearch/llama.git</a></p><p><img src="https://cdn.jsdelivr.net/gh/gubin0715/image/image-20231201150854149.png" alt="image-20231201150854149"></p><h2 id="下载模型"><a href="#下载模型" class="headerlink" title="下载模型"></a>下载模型</h2><p>执行文件下下载脚本，按照提示输入申请回复邮件内的url</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash download.sh</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>DM8 docker arm64</title>
       <link href="/2023/07/15/DM8%EF%BC%9Adocker-arm64/"/>
       <url>/2023/07/15/DM8%EF%BC%9Adocker-arm64/</url>
